@@ -1,5 +1,5 @@
 <template>
-  <div>Hello {{ value }}</div>
+  <div>{{ value }}</div>
 </template>
 
 <script>
@@ -9,6 +9,10 @@ export default {
     return {
       value: "World"
     };
+  },
+  async mounted() {
+    const { text } = await (await fetch("/api/message")).json();
+    this.value = text;
   }
 };
 </script>
